@@ -100,7 +100,7 @@ create table Pet_Item (
 	[description] nvarchar(50),
 	price nvarchar(50) not null,
 	postid nvarchar(50) not null foreign key references tblPost(id),
-)
+	)
 
 create table Pet_Breed(
 	id nvarchar(50) primary key,
@@ -118,6 +118,7 @@ create table tblPet(
 	img nvarchar(MAX) not null,
 	price nvarchar(50) not null,
 	[description] nvarchar(50)
+		[postid] [nvarchar](50) not NULL foreign key references tblPost(id)
 
 )
 create table tblPostimg(
