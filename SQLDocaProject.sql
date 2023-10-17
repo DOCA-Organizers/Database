@@ -1,7 +1,6 @@
 create database DoCav1_3
 
 
-
 use DoCav1_3
 create table tblUser(
 	id nvarchar(50) primary key, 
@@ -14,8 +13,7 @@ create table tblUser(
 	isactive bit not null,
 	isban bit not null,
 	avt nvarchar(MAX) null,
-
-	)
+)
 
 CREATE TABLE [dbo].[tblRole](
 	[id] [int]IDENTITY(1,1) primary key,
@@ -48,6 +46,7 @@ CREATE TABLE [dbo].[tblPost](
 	[userid] [nvarchar](50) not NULL foreign key references tblUser(id),
 	categoryid int not null foreign key references tblCategory(id)
 )
+
 create table tblBookmark(
 	postid nvarchar(50)not NULL foreign key references tblPost(id),
 	userid nvarchar(50)not null foreign key references tblUser(id),
@@ -55,8 +54,6 @@ create table tblBookmark(
 	createtime datetime2(6) null,
 	isactive bit not null,
 )
-
-
 
 
 create table tblComment(
@@ -79,8 +76,6 @@ create table tblComment(
 )
 
 
-
-
 CREATE TABLE [dbo].[tblReport](
 	[id] [nvarchar](50) primary key,
 	[message] [nvarchar](200) NULL,
@@ -88,19 +83,17 @@ CREATE TABLE [dbo].[tblReport](
 	[postid] [nvarchar](50) null foreign key references tblPost(id) ,
 	[userid] [nvarchar](50)  not null foreign key references tblUser(id),
 	commentid [nvarchar](50)   null foreign key references tblComment(id),
-
-
 )
 
 create table Pet_Item (
 	id nvarchar(50) primary key,
-	[type] nvarchar(50),
-	species nvarchar(50),
+	item_type nvarchar(50),
+	pet_type nvarchar(50),
 	img nvarchar(MAX) not null,
 	[description] nvarchar(50),
 	price nvarchar(50) not null,
 	postid nvarchar(50) not null foreign key references tblPost(id),
-	)
+)
 
 create table Pet_Breed(
 	id nvarchar(50) primary key,
@@ -117,8 +110,8 @@ create table tblPet(
 	age int null,
 	img nvarchar(MAX) not null,
 	price nvarchar(50) not null,
-	[description] nvarchar(50)
-		[postid] [nvarchar](50) not NULL foreign key references tblPost(id)
+	[description] nvarchar(50),
+	[postid] [nvarchar](50) not NULL foreign key references tblPost(id)
 
 )
 create table tblPostimg(
@@ -130,3 +123,23 @@ create table tblPostimg(
 
 insert tblRole values('AD','All'),('Staff','Cat'),('Staff','Dog'),('Staff','All'),('User','All')
 insert tblCategory values(1,'Dog food'),(2,'Cat food'),(3,'Dog toy'),(4,'Cat toy')
+
+insert tblUser values('1','user1','123456','User1',null,'12/9/2003',1,1,0,1),
+	('2','user2','123456','User2',null,'12/9/2001',1,1,0,1),
+	('3','user3','123456','User3',null,'12/9/2004',1,1,0,1)
+insert tblUser_Role values('1',3,'10/9/2023',null,1),('2',3,'10/9/2023',null,1),('3',3,'10/9/2023',null,1)
+
+insert tblPost values ('1','First','First',1,'7/10/2023',1,1,1,2),
+ ('2','Second','Second',1,'8/10/2023',1,1,1,1),
+  ('3','Third','Third',1,'9/10/2023',1,1,1,3)
+insert tblBookmark values ('1','2','12/9/2023',1),('2','2','12/9/2023',1),('3','2','12/9/2023',1),
+('1','3','12/9/2023',1)
+insert tblComment values ('1','Good',1,0,'12/9/2023','1','1'),('2','Nice',1,0,'12/9/2023','2','1'),
+('3','Good',1,0,'12/9/2023','3','1')
+insert tblReact ([isactive],[createtime],[postid],[userid],[commentid]) values (1,'12/9/2003','1','1',null) ,(1,'12/9/2003',null,'2','1')
+
+insert tblReport values('1','Error1',1,1,1,null),('2','Error2',1,1,1,null),('3','Error3',1,1,2,null)
+,('4','Error4',1,1,3,null)
+
+insert [dbo].[Pet_Breed] values ('1','Chihuahua','2','Dog'),('2','Black','1','Cat')
+
