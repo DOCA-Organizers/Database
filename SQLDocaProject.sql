@@ -1,8 +1,8 @@
-create database Docav1_3
+create database DoCav1_4
 
 
 
-use DoCav1_3
+use DoCav1_4
 create table tblUser(
 	id nvarchar(50) primary key, 
 	username nvarchar(50) not null,
@@ -37,6 +37,12 @@ Create table tblCategory(
 	[name] nvarchar(50)
 )
 
+create table Pet_Breed(
+	id nvarchar(50) primary key,
+	breedname nvarchar(50),
+	pet_type nvarchar(50) not null,
+)
+
 CREATE TABLE [dbo].[tblPost](
 	[id] [nvarchar](50) primary key,
 	[content] [nvarchar](500) NOT NULL,
@@ -45,8 +51,10 @@ CREATE TABLE [dbo].[tblPost](
 	issold bit not null,
 	isexchange bit not null,
 	[userid] [nvarchar](50) not NULL foreign key references tblUser(id),
-	categoryid int not null foreign key references tblCategory(id)
+	categoryid int not null foreign key references tblCategory(id),
+	pet_Breedid [nvarchar](50) not NULL foreign key references Pet_Breed(id)
 )
+
 create table tblBookmark(
 	postid nvarchar(50)not NULL foreign key references tblPost(id),
 	userid nvarchar(50)not null foreign key references tblUser(id),
@@ -98,13 +106,6 @@ create table Pet_Item (
 	price nvarchar(50) not null,
 	postid nvarchar(50) not null foreign key references tblPost(id),
 	)
-
-create table Pet_Breed(
-	id nvarchar(50) primary key,
-	breedname nvarchar(50),
-	[postid] [nvarchar](50) not NULL foreign key references tblPost(id),
-	pet_type nvarchar(50) not null,
-)
 
 create table tblPet(
 	id nvarchar(50) primary key,
