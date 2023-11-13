@@ -45,6 +45,7 @@ create table Pet_Breed(
 
 CREATE TABLE [dbo].[tblPost](
 	[id] [nvarchar](50) primary key,
+	title nvarchar(50) not null,
 	[content] [nvarchar](500) NOT NULL,
 	isactive bit NOT NULL,
 	[createtime] datetime2(6) NULL,
@@ -127,4 +128,8 @@ create table tblPostimg(
 )
 
 insert tblRole values('AD','All'),('Staff','Cat'),('Staff','Dog'),('Staff','All'),('User','All')
-insert tblCategory values(1,'Dog food'),(2,'Cat food'),(3,'Dog toy'),(4,'Cat toy')
+insert tblCategory values(1,'Dog food'),(2,'Dog Health and Nutrition'),(3,'Dog Service'),(4,'Dog Show and Events'),
+(5,	'Cat Chat'),
+(6,	'CatHealth and Nutrition'),
+(7,	'Dog Service'),
+(8,'Dog Show and Events')
